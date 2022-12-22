@@ -5,7 +5,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class ApiHelperImpl @Inject constructor(
-    private val apiService: ApiService
+    private val apiContract: ApiContract
 ):ApiHelper {
-    override suspend fun getCharacters(): Response<CharactersResponse> = apiService.getCharacters()
+    override suspend fun getCharacters(page: Int): Response<CharactersResponse> = apiContract.getCharacters(page)
 }

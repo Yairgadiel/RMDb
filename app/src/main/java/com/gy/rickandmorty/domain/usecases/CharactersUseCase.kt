@@ -6,5 +6,5 @@ import javax.inject.Singleton
 
 @Singleton
 class CharactersUseCase @Inject constructor(private val charactersRepo: CharactersRepo) {
-    suspend fun getCharacters() = charactersRepo.getCharacters()
+//    suspend fun getCharacters() = charactersRepo.getCharacters()
 }

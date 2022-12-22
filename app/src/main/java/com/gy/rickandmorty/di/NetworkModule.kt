@@ -2,7 +2,7 @@ package com.gy.rickandmorty.di
 
 import com.gy.rickandmorty.network.ApiHelper
 import com.gy.rickandmorty.network.ApiHelperImpl
-import com.gy.rickandmorty.network.ApiService
+import com.gy.rickandmorty.network.ApiContract
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,7 +34,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit) : ApiService {
-        return retrofit.create(ApiService::class.java)
+    fun provideApiService(retrofit: Retrofit) : ApiContract {
+        return retrofit.create(ApiContract::class.java)
     }
 }

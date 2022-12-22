@@ -4,5 +4,5 @@ import com.gy.rickandmorty.model.CharactersResponse
 import retrofit2.Response
 
 interface ApiHelper {
-    suspend fun getCharacters() : Response<CharactersResponse>
+    suspend fun getCharacters(page: Int) : Response<CharactersResponse>
 }
