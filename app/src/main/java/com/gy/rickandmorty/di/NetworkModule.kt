@@ -1,8 +1,8 @@
 package com.gy.rickandmorty.di
 
-import com.gy.rickandmorty.network.ApiHelper
-import com.gy.rickandmorty.network.ApiHelperImpl
-import com.gy.rickandmorty.network.ApiContract
+import com.gy.rickandmorty.model.network.ApiHelper
+import com.gy.rickandmorty.model.network.ApiHelperImpl
+import com.gy.rickandmorty.model.network.ApiContract
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

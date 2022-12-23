@@ -11,7 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.gy.rickandmorty.model.ShowCharacter
+import com.gy.rickandmorty.model.entities.ShowCharacter
 import com.gy.rickandmorty.ui.composables.CharactersScreen
 import com.gy.rickandmorty.ui.theme.RickAndMortyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val lazyPagingItems = viewModel.flow.collectAsLazyPagingItems()
+            val lazyPagingItems = viewModel.charactersFlow.collectAsLazyPagingItems()
 
             RickAndMortyTheme {
                 var characters by remember {

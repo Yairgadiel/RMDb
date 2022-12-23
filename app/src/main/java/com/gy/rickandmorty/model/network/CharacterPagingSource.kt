@@ -1,9 +1,9 @@
-package com.gy.rickandmorty.network
+package com.gy.rickandmorty.model.network
 
 import android.accounts.NetworkErrorException
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.gy.rickandmorty.model.ShowCharacter
+import com.gy.rickandmorty.model.entities.ShowCharacter
 import javax.inject.Inject
 
 class CharacterPagingSource @Inject constructor(private val apiHelper: ApiHelper): PagingSource<Int, ShowCharacter>() {

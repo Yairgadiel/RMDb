@@ -1,4 +1,4 @@
-package com.gy.rickandmorty.network
+package com.gy.rickandmorty.model.network
 
 import com.gy.rickandmorty.model.CharactersResponse
 import retrofit2.Response

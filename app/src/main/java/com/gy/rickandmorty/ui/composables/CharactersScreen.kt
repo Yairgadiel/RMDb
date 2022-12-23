@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import com.gy.rickandmorty.model.Location
-import com.gy.rickandmorty.model.Origin
-import com.gy.rickandmorty.model.ShowCharacter
+import com.gy.rickandmorty.model.entities.Location
+import com.gy.rickandmorty.model.entities.Origin
+import com.gy.rickandmorty.model.entities.ShowCharacter
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

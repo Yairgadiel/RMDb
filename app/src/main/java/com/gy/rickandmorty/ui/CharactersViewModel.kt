@@ -1,6 +1,5 @@
 package com.gy.rickandmorty.ui
 
-import android.accounts.NetworkErrorException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,10 +10,9 @@ import androidx.paging.cachedIn
 import com.gy.rickandmorty.Resource
 import com.gy.rickandmorty.domain.usecases.CharactersUseCase
 import com.gy.rickandmorty.model.CharactersResponse
-import com.gy.rickandmorty.network.ApiHelper
-import com.gy.rickandmorty.network.CharacterPagingSource
+import com.gy.rickandmorty.model.network.ApiHelper
+import com.gy.rickandmorty.model.network.CharacterPagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,14 +25,13 @@ class CharactersViewModel @Inject internal constructor(private val useCase: Char
 //        load()
     }
 
-    val flow = Pager(
+    val charactersFlow = Pager(
         // Configure how data is loaded by passing additional properties to
         // PagingConfig, such as prefetchDistance.
         PagingConfig(pageSize = 2)
     ) {
         CharacterPagingSource(apiHelper)
-    }.flow
-        .cachedIn(viewModelScope)
+    }.flow.cachedIn(viewModelScope)
 
 //    fun load() {
 //        _res.postValue(Resource.Loading())
