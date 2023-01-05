@@ -20,10 +20,15 @@ fun Character(character: ShowCharacter? = null) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-        .height(100.dp)
-        .fillMaxWidth()
-        .background(color = colorResource(id = R.color.white))) {
-        AsyncImage(model = character?.image, contentDescription = character?.name, modifier = Modifier.size(50.dp))
+            .height(64.dp)
+            .padding(8.dp)
+            .fillMaxWidth()
+            .background(color = colorResource(id = R.color.white))) {
+        AsyncImage(
+            model = character?.image,
+            contentDescription = character?.name,
+            modifier = Modifier.size(50.dp)
+        )
 
         Column(verticalArrangement = Arrangement.Center) {
             Text(text = character?.name ?: "Name")
