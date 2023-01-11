@@ -1,33 +1,28 @@
 package com.gy.rickandmorty.ui.composables
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import com.gy.rickandmorty.R
 import com.gy.rickandmorty.model.entities.ShowCharacter
-import com.gy.rickandmorty.ui.theme.RickAndMortyTheme
+import com.gy.rickandmorty.ui.composables.display_mode_selector.DisplayMode
+import com.gy.rickandmorty.ui.composables.display_mode_selector.DisplayModeSelector
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -44,12 +39,13 @@ fun CharactersScreen(
 
     val pullState = rememberPullRefreshState(isRefreshing, ::refresh)
 
-    Box(Modifier.pullRefresh(pullState)) { var characterDisplayMode by remember {
-            mutableStateOf(DisplayMode.GRID)
+    Box(Modifier.pullRefresh(pullState)) {
+        var characterDisplayMode by rememberSaveable {
+            mutableStateOf(DisplayMode.LIST)
         }
 
         PullRefreshIndicator(
-            refreshing = isRefreshing,
+            refreshing = false,
             state = pullState,
             modifier = Modifier
                 .align(Alignment.TopCenter)
@@ -57,8 +53,17 @@ fun CharactersScreen(
         )
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            ActionsBar { mode ->
-                characterDisplayMode = mode
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+            ) {
+                DisplayModeSelector(displayModes = listOf(DisplayMode.LIST, DisplayMode.GRID)) {
+                    characterDisplayMode = it
+                }
             }
 
             when (characterDisplayMode) {
@@ -120,45 +125,6 @@ private fun ProgressIndicator() {
     )
 }
 
-@Composable
-fun ActionsBar(onDisplayModeSelected: (DisplayMode) -> Unit) {
-    val iconModifier = Modifier
-        .size(40.dp)
-        .border(
-            width = 2.dp,
-            color = Color.LightGray,
-            shape = RoundedCornerShape(percent = 20)
-        )
-
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.End,
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-            .wrapContentHeight()
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.baseline_view_list_24),
-            contentDescription = "list",
-            modifier = iconModifier.clickable { onDisplayModeSelected(DisplayMode.LIST) }
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Image(
-            painter = painterResource(id = R.drawable.baseline_view_module_24),
-            contentDescription = "grid",
-            modifier = iconModifier.clickable { onDisplayModeSelected(DisplayMode.GRID) }
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ActionsBarPrev() {
-    RickAndMortyTheme {
-        ActionsBar() {}
-    }
-}
 
 @Preview
 @Composable
