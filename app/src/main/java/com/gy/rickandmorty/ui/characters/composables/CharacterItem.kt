@@ -1,6 +1,7 @@
-package com.gy.rickandmorty.ui.composables
+package com.gy.rickandmorty.ui.characters.composables
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
@@ -33,13 +34,14 @@ private val secondaryTextStile =
     TextStyle(fontSize = 14.sp, color = Color.Gray, textAlign = TextAlign.Center)
 
 @Composable
-fun ListCharacter(character: ShowCharacter) {
+fun ListCharacter(modifier: Modifier = Modifier, character: ShowCharacter, onCharacterClick: (Int) -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .wrapContentHeight()
             .padding(16.dp)
             .fillMaxWidth()
+            .clickable { onCharacterClick(character.id) }
     ) {
         AsyncImage(
             model = character.image,
@@ -73,13 +75,14 @@ fun ListCharacter(character: ShowCharacter) {
 }
 
 @Composable
-fun GridCharacter(character: ShowCharacter) {
+fun GridCharacter(modifier: Modifier = Modifier, character: ShowCharacter, onCharacterClick: (Int) -> Unit) {
     Card {
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
+            modifier = modifier
                 .padding(16.dp)
+                .clickable { onCharacterClick(character.id) }
         ) {
             AsyncImage(
                 model = character.image,
@@ -134,11 +137,11 @@ private val previewCharacter = ShowCharacter(
 @Preview(name = "Character - List", uiMode = UI_MODE_NIGHT_NO, showBackground = true)
 @Composable
 fun ListCharacterPrev() {
-    ListCharacter(previewCharacter)
+    ListCharacter(character = previewCharacter) {}
 }
 
 @Preview(name = "Character - Grid", uiMode = UI_MODE_NIGHT_NO, showBackground = true, widthDp = 200)
 @Composable
 fun GridCharacterPrev() {
-    GridCharacter(previewCharacter)
+    GridCharacter(character = previewCharacter) {}
 }

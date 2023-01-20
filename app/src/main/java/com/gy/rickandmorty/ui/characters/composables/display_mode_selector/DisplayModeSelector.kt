@@ -1,4 +1,4 @@
-package com.gy.rickandmorty.ui.composables.display_mode_selector
+package com.gy.rickandmorty.ui.characters.composables.display_mode_selector
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

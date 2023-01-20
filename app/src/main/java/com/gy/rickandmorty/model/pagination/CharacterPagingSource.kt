@@ -4,10 +4,10 @@ import android.accounts.NetworkErrorException
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.gy.rickandmorty.model.entities.ShowCharacter
-import com.gy.rickandmorty.model.network.ApiHelper
+import com.gy.rickandmorty.model.network.CharactersApiHelper
 import javax.inject.Inject
 
-class CharacterPagingSource @Inject constructor(private val apiHelper: ApiHelper): PagingSource<Int, ShowCharacter>() {
+class CharacterPagingSource @Inject constructor(private val charactersApiHelper: CharactersApiHelper): PagingSource<Int, ShowCharacter>() {
     override fun getRefreshKey(state: PagingState<Int, ShowCharacter>): Int? {
         // Try to find the page key of the closest page to anchorPosition, from
         // either the prevKey or the nextKey, but you need to handle nullability
@@ -26,7 +26,7 @@ class CharacterPagingSource @Inject constructor(private val apiHelper: ApiHelper
         return try {
             // Start refresh at page 1 if undefined.
             val nextPageNumber = (params.key ?: 0) + 1
-            val response = apiHelper.getCharacters(nextPageNumber)
+            val response = charactersApiHelper.getCharacters(nextPageNumber)
 
             response.body()?.let {
                 LoadResult.Page(

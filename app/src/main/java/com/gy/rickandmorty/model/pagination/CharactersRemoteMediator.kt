@@ -10,14 +10,14 @@ import com.gy.rickandmorty.model.db.AppDatabase
 import com.gy.rickandmorty.model.db.characterPages.CharacterPage
 import com.gy.rickandmorty.model.db.utilities.AppUtilities
 import com.gy.rickandmorty.model.entities.ShowCharacter
-import com.gy.rickandmorty.model.network.ApiHelper
+import com.gy.rickandmorty.model.network.CharactersApiHelper
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
 class CharactersRemoteMediator @Inject constructor(private val database: AppDatabase,
-                                                   private val apiHelper: ApiHelper
+                                                   private val charactersApiHelper: CharactersApiHelper
 ) : RemoteMediator<Int, ShowCharacter>() {
     override suspend fun load(
         loadType: LoadType,
@@ -65,7 +65,7 @@ class CharactersRemoteMediator @Inject constructor(private val database: AppData
             // wrapped in a withContext(Dispatcher.IO) { ... } block since
             // Retrofit's Coroutine CallAdapter dispatches on a worker
             // thread.
-            val response = apiHelper.getCharacters(page)
+            val response = charactersApiHelper.getCharacters(page)
             val charactersRes = response.body() ?: throw NetworkErrorException("Empty results")
             val pagesCount = charactersRes.info.pages
 

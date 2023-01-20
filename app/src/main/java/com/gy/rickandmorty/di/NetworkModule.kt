@@ -1,8 +1,8 @@
 package com.gy.rickandmorty.di
 
-import com.gy.rickandmorty.model.network.ApiHelper
-import com.gy.rickandmorty.model.network.ApiHelperImpl
-import com.gy.rickandmorty.model.network.ApiContract
+import com.gy.rickandmorty.model.network.CharactersApiHelper
+import com.gy.rickandmorty.model.network.CharactersApiHelperImpl
+import com.gy.rickandmorty.model.network.CharactersApiContract
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,13 +28,13 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiHelperImpl: ApiHelperImpl) : ApiHelper {
+    fun provideApiHelper(apiHelperImpl: CharactersApiHelperImpl) : CharactersApiHelper {
         return apiHelperImpl
     }
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit) : ApiContract {
-        return retrofit.create(ApiContract::class.java)
+    fun provideApiService(retrofit: Retrofit) : CharactersApiContract {
+        return retrofit.create(CharactersApiContract::class.java)
     }
 }

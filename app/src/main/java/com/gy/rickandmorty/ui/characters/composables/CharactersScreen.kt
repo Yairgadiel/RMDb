@@ -40,7 +40,7 @@ fun CharactersScreen(viewModel: CharactersViewModel = hiltViewModel(), navigator
 
     val pullState = rememberPullRefreshState(isRefreshing, { lazyPagingItems.refresh() })
 
-    val pullState = rememberPullRefreshState(isRefreshing, ::refresh)
+    val onCharacterClick : (Int) -> Unit = { navigator.navigate(CharacterDetailsScreenDestination(it)) }
 
     Box(Modifier.pullRefresh(pullState)) {
         var characterDisplayMode by rememberSaveable {
@@ -77,7 +77,7 @@ fun CharactersScreen(viewModel: CharactersViewModel = hiltViewModel(), navigator
                     ) {
                         itemsIndexed(lazyPagingItems) { _, item ->
                             if (item != null) {
-                                ListCharacter(item)
+                                ListCharacter(character = item, onCharacterClick = onCharacterClick)
                             }
                         }
 
@@ -101,7 +101,7 @@ fun CharactersScreen(viewModel: CharactersViewModel = hiltViewModel(), navigator
                         items(lazyPagingItems.itemCount) {
                             val character = lazyPagingItems[it]
                             if (character != null) {
-                                GridCharacter(character)
+                                GridCharacter(character = character, onCharacterClick = onCharacterClick)
                             }
                         }
 
