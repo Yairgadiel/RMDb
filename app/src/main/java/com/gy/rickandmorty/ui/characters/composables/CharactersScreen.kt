@@ -1,4 +1,4 @@
-package com.gy.rickandmorty.ui.composables
+package com.gy.rickandmorty.ui.characters.composables
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,25 +17,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import com.gy.rickandmorty.model.entities.ShowCharacter
-import com.gy.rickandmorty.ui.composables.display_mode_selector.DisplayMode
-import com.gy.rickandmorty.ui.composables.display_mode_selector.DisplayModeSelector
+import com.gy.rickandmorty.ui.characters.CharactersViewModel
+import com.gy.rickandmorty.ui.characters.composables.display_mode_selector.DisplayMode
+import com.gy.rickandmorty.ui.characters.composables.display_mode_selector.DisplayModeSelector
+import com.gy.rickandmorty.ui.destinations.CharacterDetailsScreenDestination
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterialApi::class)
+@Destination(start = true)
 @Composable
-fun CharactersScreen(
-    lazyPagingItems: LazyPagingItems<ShowCharacter>
-) {
+fun CharactersScreen(viewModel: CharactersViewModel = hiltViewModel(), navigator: DestinationsNavigator) {
+    val lazyPagingItems = viewModel.charactersFlow.collectAsLazyPagingItems()
+
     val isRefreshing by remember {
         derivedStateOf { lazyPagingItems.loadState.refresh == LoadState.Loading }
     }
 
-    fun refresh() {
-        lazyPagingItems.refresh()
-    }
+    val pullState = rememberPullRefreshState(isRefreshing, { lazyPagingItems.refresh() })
 
     val pullState = rememberPullRefreshState(isRefreshing, ::refresh)
 

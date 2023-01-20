@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import androidx.paging.compose.collectAsLazyPagingItems
-import com.gy.rickandmorty.ui.composables.CharactersScreen
+import com.gy.rickandmorty.ui.characters.CharactersViewModel
 import com.gy.rickandmorty.ui.theme.RickAndMortyTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 const val TAG = "MainActivity"
@@ -23,14 +23,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val lazyPagingItems = viewModel.charactersFlow.collectAsLazyPagingItems()
-
             RickAndMortyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    CharactersScreen(lazyPagingItems)
+                    DestinationsNavHost(navGraph = NavGraphs.root)
                 }
             }
         }

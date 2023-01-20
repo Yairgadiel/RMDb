@@ -5,6 +5,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CharactersUseCase @Inject constructor(private val charactersRepo: CharactersRepository) {
-   fun getCharacters() = charactersRepo.getCharactersStream()
+class GetCharactersUseCase @Inject constructor(private val charactersRepo: CharactersRepository) {
+
+   operator fun invoke() = charactersRepo.getCharactersStream()
+
 }
