@@ -14,15 +14,26 @@
 </p>
 
 <h2>Tech Stack</h2>
-<ul> UI </ul> 
-<li> Jetpack Compose </li>
-<li> Compose Destinations </li>
-<li> Coil </li>
-<ul> Data </ul>
-<li> Retrofit </li>
-<li> Room </li>
-<li> Paging3 </li>
-<ul> DI </ul>
-<li> Hilt </li>
-<ul> Clean Architecture </ul>
-<li> Coroutines & Flows </li>
+<h4> UI </h4>
+<ul> 
+    <li> Jetpack Compose </li>
+    <li> Compose Destinations </li>
+    <li> Coil </li>
+</ul> 
+
+<h4> Data </h4>
+<ul> 
+    <li> Retrofit </li>
+    <li> Room </li>
+    <li> Paging3 </li>
+</ul>
+
+<h4> DI </h4>
+<ul> 
+    <li> Hilt </li>
+</ul>
+
+<h4> Clean Architecture </h4>
+<ul> 
+    <li> Coroutines & Flows </li>
+</ul>
