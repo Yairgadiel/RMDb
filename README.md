@@ -44,5 +44,5 @@
 <h2>License</h2>
 <p>
     This project is licensed under the terms of the 
-        <a href="/Yairgadiel/RMDb/blob/master/LICENSE">MIT License</a>
+        <a href="/LICENSE">MIT License</a>
 </p>
