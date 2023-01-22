@@ -1,16 +1,19 @@
 # RMDb
 
+<p> Simple app presenting information about Rick & Morty characters, showcasing clean architecture and some of the newest android technologies </p>
+
+
 <h2>Main Screen</h2>
 
 <p align="middle">
-  <img src="screenshots/list.png" width="216" height="444" align="center">
-  <img src="screenshots/grid.png" width="216" height="444" align="center">
+  <img src="screenshots/list.png" width="216" height="444" align="center" style="box-shadow: 2px 2px 2px #0005;">
+  <img src="screenshots/grid.png" width="216" height="444" align="center" style="box-shadow: 2px 2px 2px #0005;">
 </p>
 
 <h2>Character Screen</h2>
 
 <p align="middle">
-  <img src="screenshots/character.png" width="216" height="444" align="center">
+  <img src="screenshots/character.png" width="216" height="444" align="center" style="box-shadow: 2px 2px 2px #0005;">
 </p>
 
 <h2>Tech Stack</h2>
@@ -37,3 +40,9 @@
 <ul> 
     <li> Coroutines & Flows </li>
 </ul>
+
+<h2>License</h2>
+<p>
+    This project is licensed under the terms of the 
+        <a href="/RickAndMorty/LICENSE">MIT License</a>
+</p>
