@@ -9,7 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.gy.rickandmorty.ui.characters.CharactersViewModel
-import com.gy.rickandmorty.ui.theme.RickAndMortyTheme
+import com.gy.rickandmorty.ui.theme.RMDbTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            RickAndMortyTheme {
+            RMDbTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background

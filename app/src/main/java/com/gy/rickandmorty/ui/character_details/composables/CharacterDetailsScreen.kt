@@ -40,6 +40,7 @@ import com.gy.rickandmorty.model.entities.Location
 import com.gy.rickandmorty.model.entities.Origin
 import com.gy.rickandmorty.model.entities.ShowCharacter
 import com.gy.rickandmorty.ui.character_details.CharacterDetailsViewModel
+import com.gy.rickandmorty.ui.theme.RMDbTheme
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -87,7 +88,7 @@ private fun CharacterDetails(character: ShowCharacter) {
 
             Column(
                 Modifier
-                    .padding(start = 16.dp, end = 16.dp)
+                    .padding(horizontal = 16.dp)
                     .fillMaxWidth()
                     .wrapContentHeight()
             ) {
@@ -106,11 +107,7 @@ private fun CharacterDetails(character: ShowCharacter) {
 
                 Text(
                     text = character.name,
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold,
-
-                        ),
-                    fontSize = 20.sp
+                    style = RMDbTheme.typography.h2,
                 )
 
                 Text(
@@ -135,18 +132,16 @@ private fun CharacterDetails(character: ShowCharacter) {
                 Text(
                     text = character.location.name,
                     fontSize = 14.sp,
-                    style = TextStyle(
-                        color = Color.Gray
-                    )
+                    style = RMDbTheme.typography.bodySecondary
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
                     text = "${character.episode.size} ${if (character.episode.size == 1) "episode" else "episodes"}",
-                    fontSize = 14.sp,
                     style = TextStyle(
-                        color = MaterialTheme.colors.primary,
+                        fontSize = 14.sp,
+                        color = RMDbTheme.colors.primary,
                         fontWeight = FontWeight.SemiBold
                     )
                 )

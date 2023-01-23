@@ -11,27 +11,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.gy.rickandmorty.R
 import com.gy.rickandmorty.model.entities.Location
 import com.gy.rickandmorty.model.entities.Origin
 import com.gy.rickandmorty.model.entities.ShowCharacter
-
-private val primaryTextStile =
-    TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold)
-
-private val secondaryTextStile =
-    TextStyle(fontSize = 14.sp, color = Color.Gray, textAlign = TextAlign.Center)
+import com.gy.rickandmorty.ui.theme.RMDbTheme
 
 @Composable
 fun ListCharacter(modifier: Modifier = Modifier, character: ShowCharacter, onCharacterClick: (Int) -> Unit) {
@@ -61,14 +53,14 @@ fun ListCharacter(modifier: Modifier = Modifier, character: ShowCharacter, onCha
                 text = character.name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = primaryTextStile,
+                style =  RMDbTheme.typography.h2,
                 modifier = Modifier.width(250.dp)
             )
             Text(
                 text = character.origin.name,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                style = secondaryTextStile
+                style = RMDbTheme.typography.bodySecondary
             )
         }
     }
@@ -101,7 +93,7 @@ fun GridCharacter(modifier: Modifier = Modifier, character: ShowCharacter, onCha
                 text = character.name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                style = primaryTextStile
+                style = RMDbTheme.typography.h2
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -110,7 +102,7 @@ fun GridCharacter(modifier: Modifier = Modifier, character: ShowCharacter, onCha
                 text = character.origin.name,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                style = secondaryTextStile,
+                style = RMDbTheme.typography.bodySecondary.plus(TextStyle(textAlign = TextAlign.Center)),
                 modifier = Modifier.height(40.dp)
             )
 
